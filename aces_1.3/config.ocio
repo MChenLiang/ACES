@@ -68,7 +68,6 @@ looks:
 colorspaces:
   - !<ColorSpace>
     name: Linear CIE-XYZ D65
-    aliases: [cie_xyz_d65, CIE-XYZ-D65, XYZ, Linear CIE-XYZ I-D65]
     family: Chromaticity
     equalitygroup:
     bitdepth: 32f
@@ -79,7 +78,6 @@ colorspaces:
 
   - !<ColorSpace>
     name: Linear CIE-XYZ E
-    aliases: ["FilmLight: Linear - XYZ", Linear CIE-XYZ I-E]
     family: Chromaticity
     equalitygroup:
     bitdepth: 32f
@@ -98,7 +96,7 @@ colorspaces:
     allocation: uniform
     from_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear CIE-XYZ I-D65}
+        - !<ColorSpaceTransform> {src: Linear CIE-XYZ E, dst: Linear CIE-XYZ D65}
         - !<MatrixTransform> {matrix: [1.4128066123, -0.1775223662, -0.1517703764, 0.0000000000, -0.4862031858, 1.2906962108, 0.1574002837, 0.0000000000, -0.0371387758, 0.2863757596, 0.6876796053, 0.0000000000, 0.0000000000, 0.0000000000, 0.0000000000, 1.0000000000]}
 
   - !<ColorSpace>
@@ -112,10 +110,10 @@ colorspaces:
     allocationvars: [0, 1]
     to_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: Input - RED - REDLog3G10 - REDWideGamutRGB, dst: Linear CIE-XYZ I-E}
+        - !<ColorSpaceTransform> {src: Input - RED - REDLog3G10 - REDWideGamutRGB, dst: Linear CIE-XYZ E}
     from_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Input - RED - REDLog3G10 - REDWideGamutRGB}
+        - !<ColorSpaceTransform> {src: Linear CIE-XYZ E, dst: Input - RED - REDLog3G10 - REDWideGamutRGB}
         - !<FileTransform> {src: VFX_Final_LUT.cube, interpolation: tetrahedral}
 
   - !<ColorSpace>
@@ -129,7 +127,7 @@ colorspaces:
     allocationvars: [0, 1]
     from_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: Linear CIE-XYZ I-E, dst: Input - RED - REDLog3G10 - REDWideGamutRGB, looks: di-grade}
+        - !<LookTransform> {src: Linear CIE-XYZ E, dst: Input - RED - REDLog3G10 - REDWideGamutRGB, looks: di-grade}
         - !<FileTransform> {src: VFX_Final_LUT.cube, interpolation: tetrahedral}
 
   - !<ColorSpace>
